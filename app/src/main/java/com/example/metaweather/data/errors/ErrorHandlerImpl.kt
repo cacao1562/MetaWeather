@@ -19,8 +19,7 @@ class ErrorHandlerImpl(
                 }
             }
 
-//            is IOException -> ErrorEntity.NetWork(context.resources.getString(R.string.message_network_unstable))
-            is IOException -> ErrorEntity.NetWork("IOException ${throwable.cause}")
+            is IOException -> ErrorEntity.NetWork(context.resources.getString(R.string.message_network_unstable))
             else -> ErrorEntity.NetWork("throwable=$throwable")
         }
     }

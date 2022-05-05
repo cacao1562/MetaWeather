@@ -12,11 +12,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".presentation.ui.MainActivity">
+        tools:context=".presentation.ui.MainActivity"
+        android:background="@color/white">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:padding="16dp"
             app:setSwipeRefresh="@{viewModel}"
             app:isRefreshing="@{viewModel.isLoading()}"
             app:layout_constraintTop_toTopOf="parent"
@@ -28,7 +30,10 @@
                 android:id="@+id/rv_main"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+                android:padding="1dp"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:background="@drawable/bg_list"/>
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

@@ -12,6 +12,8 @@ class WeatherViewHolder constructor(
 ): BaseBindingViewHolder<LocationInfo, ItemWeatherBinding>(parent, layoutRes) {
 
     override fun bind(obj: LocationInfo) {
-
+        binding.data = obj
+        binding.layoutToday.data = obj.locations[0]
+        binding.layoutTomorrow.data = obj.locations[1]
     }
 }

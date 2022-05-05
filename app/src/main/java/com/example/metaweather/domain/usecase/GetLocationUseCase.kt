@@ -1,6 +1,5 @@
 package com.example.metaweather.domain.usecase
 
-import com.example.metaweather.data.entity.ResponseLocation
 import com.example.metaweather.data.network.BaseResult
 import com.example.metaweather.domain.model.LocationInfo
 import com.example.metaweather.domain.repository.WeatherRepository

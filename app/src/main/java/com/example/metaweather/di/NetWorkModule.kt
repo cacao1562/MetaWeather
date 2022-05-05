@@ -48,7 +48,6 @@ object NetWorkModule {
             level = HttpLoggingInterceptor.Level.BODY
         }
         val dispatcher = Dispatcher(Executors.newFixedThreadPool(20)).apply {
-//            maxRequests = 20
             maxRequestsPerHost = 20
         }
         val okHttpClient = OkHttpClient.Builder().apply {

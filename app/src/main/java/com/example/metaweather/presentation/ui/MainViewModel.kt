@@ -23,7 +23,7 @@ class MainViewModel @Inject constructor(
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
 
-    val onLoading: (Boolean) -> Unit = {
+    private val onLoading: (Boolean) -> Unit = {
         _isLoading.value = it
     }
 
@@ -34,6 +34,8 @@ class MainViewModel @Inject constructor(
 
 
     fun getLocationSearch(query: String = "se") {
+        locationSearch.value = emptyList()
+        _locationInfo.value = emptyList()
         viewModelScope.launch {
             getLocationSearchUseCase(onLoading, query).collect { searchResult ->
                 when (searchResult) {
@@ -48,7 +50,7 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    suspend fun getLocation(woeid: Int) =
+    private suspend fun getLocation(woeid: Int) =
         viewModelScope.async {
             getLocationUseCase(onLoading, woeid).first()
         }
@@ -70,7 +72,6 @@ class MainViewModel @Inject constructor(
                 }
             }.toMutableList()
             list.add(0, LocationInfo("", 0, emptyList()))
-            Log.d("BaseResult last list = ", "${list}")
             _locationInfo.value = list.filterNotNull()
         }
         Log.d("BaseResult time = ", "$time")

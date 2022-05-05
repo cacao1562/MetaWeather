@@ -1,11 +1,14 @@
 package com.example.metaweather.presentation.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.DividerItemDecoration
+import com.example.metaweather.R
 import com.example.metaweather.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -30,6 +33,9 @@ class MainActivity : AppCompatActivity() {
         binding.rvMain.apply {
             setHasFixedSize(true)
             adapter = mAdapter
+            val divider = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+            divider.setDrawable(ContextCompat.getDrawable(context, R.drawable.divider)!!)
+            addItemDecoration(divider)
         }
 
         lifecycleScope.launch {

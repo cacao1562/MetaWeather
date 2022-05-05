@@ -31,7 +31,10 @@ data class ConsolidatedWeather(
     val humidity: Double,
     val visibility: Double,
     val predictability: Double
-)
+) {
+    val displayTemp = "${the_temp.toInt()}°C"
+    val displayHumidity = "${humidity.toInt()}%"
+}
 
 data class Parent(
     val title: String,

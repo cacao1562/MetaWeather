@@ -11,23 +11,22 @@ import com.example.metaweather.presentation.ui.MainViewModel
 
 object BindingAdapters {
 
-//    @JvmStatic
-//    @BindingAdapter("loadImageOrDefault")
-//    fun <T: Any> loadImageOrDefault(imageView: ImageView, path: T?) {
-//        if (path != null) {
-//            val name = (path as String)
-//            val url = "${Constants.BaseURL}/image/$name"
-//            Glide.with(imageView)
-//                .load(url)
-//                .apply(
-//                    RequestOptions()
-//                        .placeholder(android.R.drawable.ic_menu_gallery)
-//                        .error(android.R.drawable.stat_notify_error))
-//                .into(imageView)
-//        }else {
-//            imageView.setImageResource(android.R.drawable.ic_menu_gallery)
-//        }
-//    }
+    @JvmStatic
+    @BindingAdapter("loadImageOrDefault")
+    fun loadImageOrDefault(imageView: ImageView, path: String?) {
+        if (path != null) {
+            val url = "${Constants.Base_URL}/static/img/weather/png/64/$path.png"
+            Glide.with(imageView)
+                .load(url)
+                .apply(
+                    RequestOptions()
+                        .placeholder(android.R.drawable.ic_menu_gallery)
+                        .error(android.R.drawable.stat_notify_error))
+                .into(imageView)
+        }else {
+            imageView.setImageResource(android.R.drawable.ic_menu_gallery)
+        }
+    }
 
     @JvmStatic
     @BindingAdapter("isVisible")
