@@ -26,10 +26,13 @@ class WeatherRepositoryImpl @Inject constructor(
         woeid: Int
     ): Flow<BaseResult<LocationInfo>> {
         val data = dataSource.getLocation(onLoading, woeid).map { baseResult ->
-            if (baseResult is BaseResult.Success) {
-                BaseResult.Success(baseResult.data.asInfo())
-            }else {
-                baseResult
+            when(baseResult) {
+                is BaseResult.Success -> {
+                    BaseResult.Success(baseResult.data.asInfo())
+                }
+                is BaseResult.Error -> {
+                    baseResult
+                }
             }
         }
         return data as Flow<BaseResult<LocationInfo>>

@@ -1,6 +1,7 @@
 package com.example.metaweather.data.errors
 
 import android.content.Context
+import com.example.metaweather.R
 import retrofit2.HttpException
 import java.io.IOException
 import java.net.HttpURLConnection

@@ -10,11 +10,13 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.Dispatcher
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okio.Buffer
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -45,8 +47,13 @@ object NetWorkModule {
         val logging = HttpLoggingInterceptor(logger).apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
+        val dispatcher = Dispatcher(Executors.newFixedThreadPool(20)).apply {
+//            maxRequests = 20
+            maxRequestsPerHost = 20
+        }
         val okHttpClient = OkHttpClient.Builder().apply {
             interceptors().add(logging)
+            dispatcher(dispatcher)
             connectTimeout(60, TimeUnit.SECONDS)
             readTimeout(60, TimeUnit.SECONDS)
             writeTimeout(60, TimeUnit.SECONDS)
